@@ -1,225 +1,424 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_gray_light"
+        android:orientation="vertical">
+        <com.andexert.library.RippleView
+            android:id="@+id/lnCharge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            rv_centered="true"
+            app:rv_type="rectangle"
+            app:rv_color="@color/color_blue">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-<LinearLayout
-    android:background="@color/color_gray_light"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
-    android:elevation="8dp"
-    android:background="@color/color_white"
-    android:padding="15dp"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sạc"
-        android:textColor="@color/colorPrimaryDark"/>
-    <LinearLayout
-        android:layout_marginLeft="5dp"
-        android:gravity="center_vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_charger"/>
-        <LinearLayout
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textSize="16sp"
-                android:textColor="@color/color_black"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phát hiện chế độ sạc"/>
-            <TextView
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textSize="14sp"
-                android:textColor="@color/color_gray"
-                android:layout_width="wrap_content"
+                android:background="@color/color_white"
+                android:elevation="8dp"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sạc"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/lnOnCharge"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_charger"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Phát hiện chế độ sạc"
+                                android:textColor="@color/color_black"
+                                android:textSize="16sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Phát hiện nếu sạc được ngắt kết nối"
+                                android:textColor="@color/color_gray"
+                                android:textSize="14sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/lnOffCharge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <com.romainpiel.shimmer.ShimmerTextView
+                            android:id="@+id/shimerOffCharge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kích hoạt"
+                            android:textColor="@color/color_black"
+                            android:textSize="19sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nhấn để tắt"
+                            android:textColor="@color/color_gray_light2"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </com.andexert.library.RippleView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="@drawable/shadow"/>
+
+        <com.andexert.library.RippleView
+            android:id="@+id/lnMove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            rv_centered="true"
+            app:rv_type="rectangle"
+            app:rv_color="@color/color_blue">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Phát hiện nếu sạc được ngắt kết nối"/>
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
-    <View
-        android:background="@drawable/shadow"
-        android:layout_width="match_parent"
-        android:layout_height="6dp"/>
-    <LinearLayout
-        android:background="@color/color_white"
-        android:padding="15dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textSize="16sp"
-            android:textStyle="bold"
+                android:layout_marginTop="3dp"
+                android:background="@color/color_white"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vận động"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/lnOnMove"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_vibrate"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Chế độ phát hiện chuyển động"
+                                android:textColor="@color/color_black"
+                                android:textSize="16sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Bảo vệ khi thiết bị được di chuyển"
+                                android:textColor="@color/color_gray"
+                                android:textSize="14sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/lnOffMove"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <com.romainpiel.shimmer.ShimmerTextView
+                            android:id="@+id/shimerOffMove"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kích hoạt"
+                            android:textColor="@color/color_black"
+                            android:textSize="19sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nhấn để tắt"
+                            android:textColor="@color/color_gray_light2"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </com.andexert.library.RippleView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="@drawable/shadow"/>
+        <com.andexert.library.RippleView
+            android:id="@+id/lnNear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vận động"
-            android:textColor="@color/colorPrimaryDark"/>
-        <LinearLayout
-            android:layout_marginLeft="5dp"
-            android:gravity="center_vertical"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_vibrate"/>
+            rv_centered="true"
+            app:rv_type="rectangle"
+            app:rv_color="@color/color_blue">
             <LinearLayout
-                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:background="@color/color_white"
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:padding="15dp">
+
                 <TextView
-                    android:maxLines="1"
-                    android:ellipsize="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gần"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="16sp"
-                    android:textColor="@color/color_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chế độ phát hiện chuyển động"/>
-                <TextView
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textSize="14sp"
-                    android:textColor="@color/color_gray"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Bảo vệ khi thiết bị được di chuyển"/>
+                    android:textStyle="bold"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/lnOnNear"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_proximity"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Chế độ phát hiện tiệm cận"
+                                android:textColor="@color/color_black"
+                                android:textSize="16sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Phát hiện nếu loại bỏ túi"
+                                android:textColor="@color/color_gray"
+                                android:textSize="14sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/lnOffNear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <com.romainpiel.shimmer.ShimmerTextView
+                            android:id="@+id/shimerOffNear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kích hoạt"
+                            android:textColor="@color/color_black"
+                            android:textSize="19sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nhấn để tắt"
+                            android:textColor="@color/color_gray_light2"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-    <View
-        android:background="@drawable/shadow"
-        android:layout_width="match_parent"
-        android:layout_height="6dp"/>
-    <LinearLayout
-        android:background="@color/color_white"
-        android:padding="15dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textSize="16sp"
-            android:textStyle="bold"
+        </com.andexert.library.RippleView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="@drawable/shadow"/>
+        <com.andexert.library.RippleView
+            android:id="@+id/lnSim"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gần"
-            android:textColor="@color/colorPrimaryDark"/>
-        <LinearLayout
-            android:layout_marginLeft="5dp"
-            android:gravity="center_vertical"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_proximity"/>
+            rv_centered="true"
+            app:rv_type="rectangle"
+            app:rv_color="@color/color_blue">
             <LinearLayout
-                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:background="@color/color_white"
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:padding="15dp">
+
                 <TextView
-                    android:maxLines="1"
-                    android:ellipsize="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thay đổi SIM"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="16sp"
-                    android:textColor="@color/color_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chế độ phát hiện tiệm cận"/>
-                <TextView
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textSize="14sp"
-                    android:textColor="@color/color_gray"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Phát hiện nếu loại bỏ túi"/>
+                    android:textStyle="bold"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/lnOnSim"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_sim_change"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Chế độ phát hiện Sim"
+                                android:textColor="@color/color_black"
+                                android:textSize="16sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Phát hiện nếu thẻ sim bị thay đổi"
+                                android:textColor="@color/color_gray"
+                                android:textSize="14sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/lnOffSim"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <com.romainpiel.shimmer.ShimmerTextView
+                            android:id="@+id/shimerOffSim"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kích hoạt"
+                            android:textColor="@color/color_black"
+                            android:textSize="19sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nhấn để tắt"
+                            android:textColor="@color/color_gray_light2"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-    <View
-        android:background="@drawable/shadow"
-        android:layout_width="match_parent"
-        android:layout_height="6dp"/>
-    <LinearLayout
-        android:background="@color/color_white"
-        android:padding="15dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Thay đổi SIM"
-            android:textColor="@color/colorPrimaryDark"/>
-        <LinearLayout
-            android:layout_marginLeft="5dp"
-            android:gravity="center_vertical"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
+        </com.andexert.library.RippleView>
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_sim_change"/>
-            <LinearLayout
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textSize="16sp"
-                    android:textColor="@color/color_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chế độ phát hiện SIM"/>
-                <TextView
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textSize="14sp"
-                    android:textColor="@color/color_gray"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Phát hiện nếu thẻ sim được thay đổi"/>
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_height="6dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/shadow"/>
     </LinearLayout>
-    <View
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/shadow"
-        android:layout_width="match_parent"
-        android:layout_height="6dp"/>
-</LinearLayout>
 </ScrollView>
