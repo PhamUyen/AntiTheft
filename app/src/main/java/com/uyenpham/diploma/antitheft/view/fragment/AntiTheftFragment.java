@@ -1,4 +1,4 @@
-package com.uyenpham.diploma.antitheft.view;
+package com.uyenpham.diploma.antitheft.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,10 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 import com.uyenpham.diploma.antitheft.R;
+import com.uyenpham.diploma.antitheft.utils.CommonFunction;
+import com.uyenpham.diploma.antitheft.utils.PreferenceUtils;
 
 public class AntiTheftFragment extends Fragment implements View.OnClickListener {
     private LinearLayout lnOnCharge, lnOnMove, lnOnNear, lnOnSim;
@@ -61,11 +64,17 @@ public class AntiTheftFragment extends Fragment implements View.OnClickListener 
                     lnOnCharge.setVisibility(View.VISIBLE);
                     lnOffCharge.setVisibility(View.GONE);
                     isOnCharge = false;
+                    PreferenceUtils.saveBoolean(getActivity(),"Charge",isOnCharge);
                 } else {
-                    isOnCharge = true;
-                    lnOnCharge.setVisibility(View.GONE);
-                    lnOffCharge.setVisibility(View.VISIBLE);
-                    new Shimmer().start(shimerOffCharge);
+                    if (CommonFunction.isPlugged(getActivity())) {
+                        isOnCharge = true;
+                        lnOnCharge.setVisibility(View.GONE);
+                        lnOffCharge.setVisibility(View.VISIBLE);
+                        new Shimmer().start(shimerOffCharge);
+                        PreferenceUtils.saveBoolean(getActivity(),"Charge",isOnCharge);
+                    } else {
+                        Toast.makeText(getActivity(), "Kết nối bộ sạc!", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
             case R.id.lnOnMove:

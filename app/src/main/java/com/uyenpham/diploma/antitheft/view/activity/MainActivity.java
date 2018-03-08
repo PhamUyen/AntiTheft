@@ -1,4 +1,4 @@
-package com.uyenpham.diploma.antitheft;
+package com.uyenpham.diploma.antitheft.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.uyenpham.diploma.antitheft.R;
+import com.uyenpham.diploma.antitheft.view.fragment.AntiTheftFragment;
 
 
 public class MainActivity extends AppCompatActivity
@@ -74,7 +77,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Fragment fragment = new com.uyenpham.diploma.antitheft.view.AntiTheftFragment();
+            Fragment fragment = new AntiTheftFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
                     android.R.anim.fade_out);
