@@ -1,8 +1,10 @@
 package com.uyenpham.diploma.antitheft.utils;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.BatteryManager;
 import android.os.Build;
 
@@ -24,10 +26,19 @@ public class CommonFunction {
     public static boolean stringIsNull(String str){
         return str == null || str.equals("");
     }
-    public static void showOverlayActivity(Context context){
-        Intent intent = new Intent(context, PasswordActivity.class);
+    public static void showOverlayActivity(Context context, Class serviceClass){
+        Intent intent = new Intent(context, serviceClass);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+    }
+
+    public static void enableReciver(Class serviceName, Context context){
+        ComponentName component = new ComponentName(context, serviceName);
+        context.getPackageManager().setComponentEnabledSetting(component, PackageManager. COMPONENT_ENABLED_STATE_ENABLED , PackageManager.DONT_KILL_APP);
+    }
+    public static void disAbleReciver(Class serviceName, Context context){
+        ComponentName component = new ComponentName(context, serviceName);
+        context.getPackageManager().setComponentEnabledSetting(component, PackageManager. COMPONENT_ENABLED_STATE_DISABLED , PackageManager.DONT_KILL_APP);
     }
 }

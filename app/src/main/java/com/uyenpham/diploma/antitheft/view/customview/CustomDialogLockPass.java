@@ -7,9 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.uyenpham.diploma.antitheft.IKeybroadClick;
 import com.uyenpham.diploma.antitheft.R;
 
-public class CustomDialogLockPass extends DialogFragment {
+public class CustomDialogLockPass extends DialogFragment implements IKeybroadClick{
     public static final String TAG = "FullScreenDialog";
 
     @Override
@@ -36,5 +37,20 @@ public class CustomDialogLockPass extends DialogFragment {
 
         View view = getActivity().getLayoutInflater().inflate(R.layout.activity_password, parent, false);
         return view;
+    }
+
+    @Override
+    public void numberClick(int number) {
+        
+    }
+
+    @Override
+    public void removeClick() {
+
+    }
+
+    @Override
+    public void submitClick() {
+
     }
 }

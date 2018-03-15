@@ -29,5 +29,6 @@ dependencies {
     compile 'io.paperdb:paperdb:2.6'
     compile 'com.andrognito.patternlockview:patternlockview:1.0.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    compile 'com.google.code.gson:gson:2.7'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }

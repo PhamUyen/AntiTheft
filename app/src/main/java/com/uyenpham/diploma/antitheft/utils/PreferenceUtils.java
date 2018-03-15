@@ -1,6 +1,10 @@
 package com.uyenpham.diploma.antitheft.utils;
 
 import android.content.Context;
+
+import com.google.gson.Gson;
+import com.uyenpham.diploma.antitheft.model.ServiceActive;
+
 public class PreferenceUtils {
     private static final String PREF_NAME = "antitheft";
     private static final String KEY_LIST_SONG = "listSong";
@@ -36,5 +40,16 @@ public class PreferenceUtils {
 
     public static void remove(Context context, String key) {
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().remove(key).apply();
+    }
+
+    public static void saveServiceActive(ServiceActive serviceActive, String key, Context context){
+        Gson gson = new Gson();
+        String json = gson.toJson(serviceActive);
+        context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putString(key, json).apply();
+    }
+
+    public static ServiceActive getServiceActive(String key, Context context){
+        String json =context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getString(key, "");
+        return  new Gson().fromJson(json, ServiceActive.class);
     }
 }

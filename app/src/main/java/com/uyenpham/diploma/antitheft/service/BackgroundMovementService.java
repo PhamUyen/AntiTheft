@@ -45,13 +45,14 @@ public class BackgroundMovementService extends Service
         if (b)
         {
             b = false;
-//            int k = this.a.getInt("movementSensitivityValue", 1);
+//            int k = this.g.a.getInt("movementSensitivityValue", 1);
+            int k =3 ;
             int m = (int)paramSensorEvent.values[0];
             int n = (int)paramSensorEvent.values[1];
-//            c = k + m;
-//            d = k + n;
-//            e = m - k;
-//            f = n - k;
+            c = k + m;
+            d = k + n;
+            e = m - k;
+            f = n - k;
         }
         int i = (int)paramSensorEvent.values[0];
         int j = (int)paramSensorEvent.values[1];
