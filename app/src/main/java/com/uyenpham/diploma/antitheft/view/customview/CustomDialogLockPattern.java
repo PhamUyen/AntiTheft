@@ -1,8 +1,41 @@
 package com.uyenpham.diploma.antitheft.view.customview;
 
-/**
- * Created by steadfast-macmini-05 on 3/15/18.
- */
 
-public class CustomDialogLockPattern {
+import android.app.Dialog;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.uyenpham.diploma.antitheft.R;
+
+public class CustomDialogLockPattern extends DialogFragment {
+    public static final String TAG = "CustomDialogLockPattern";
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.FullScreenDialogStyle);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.MATCH_PARENT;
+            dialog.getWindow().setLayout(width, height);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle state) {
+        super.onCreateView(inflater, parent, state);
+
+        View view = getActivity().getLayoutInflater().inflate(R.layout.pattern_lockview, parent, false);
+        return view;
+    }
 }

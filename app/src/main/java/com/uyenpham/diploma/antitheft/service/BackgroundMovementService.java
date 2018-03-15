@@ -11,12 +11,12 @@ import android.os.IBinder;
 public class BackgroundMovementService extends Service
         implements SensorEventListener, Thread.UncaughtExceptionHandler
 {
-    private static SensorManager a;
     private static boolean b;
     private static int c;
     private static int d;
     private static int e;
     private static int f;
+    private SensorManager localSensorManager;
 //    private g g;
 
     public void onAccuracyChanged(Sensor paramSensor, int paramInt) {}
@@ -33,10 +33,10 @@ public class BackgroundMovementService extends Service
 
     public void onDestroy()
     {
-        if (a != null)
+        if (localSensorManager != null)
         {
-            a.unregisterListener(this, a.getDefaultSensor(1));
-            a = null;
+            localSensorManager.unregisterListener(this, localSensorManager.getDefaultSensor(1));
+            localSensorManager = null;
         }
     }
 
@@ -45,7 +45,7 @@ public class BackgroundMovementService extends Service
         if (b)
         {
             b = false;
-//            int k = this.g.a.getInt("movementSensitivityValue", 1);
+//            int k = this.a.getInt("movementSensitivityValue", 1);
             int m = (int)paramSensorEvent.values[0];
             int n = (int)paramSensorEvent.values[1];
 //            c = k + m;
@@ -59,10 +59,10 @@ public class BackgroundMovementService extends Service
         boolean bool2;
         if ((i > c) || (i < e) || (j > d) || (j < f))
         {
-            if (a != null)
+            if (localSensorManager != null)
             {
-                a.unregisterListener(this, a.getDefaultSensor(1));
-                a = null;
+                localSensorManager.unregisterListener(this, localSensorManager.getDefaultSensor(1));
+                localSensorManager = null;
             }
 //            bool1 = this.g.h();
 //            bool2 = this.g.n();
@@ -93,18 +93,17 @@ public class BackgroundMovementService extends Service
     public int onStartCommand(Intent paramIntent, int paramInt1, int paramInt2)
     {
         b = true;
-        SensorManager localSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-        a = localSensorManager;
-        localSensorManager.registerListener(this, a.getDefaultSensor(1), 3);
+        localSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+        localSensorManager.registerListener(this, localSensorManager.getDefaultSensor(1), 3);
         return START_STICKY;
     }
 
     public boolean stopService(Intent paramIntent)
     {
-        if (a != null)
+        if (localSensorManager != null)
         {
-            a.unregisterListener(this, a.getDefaultSensor(1));
-            a = null;
+            localSensorManager.unregisterListener(this, localSensorManager.getDefaultSensor(1));
+            localSensorManager = null;
         }
         return super.stopService(paramIntent);
     }

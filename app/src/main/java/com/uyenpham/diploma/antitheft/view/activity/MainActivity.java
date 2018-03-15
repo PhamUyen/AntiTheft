@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.uyenpham.diploma.antitheft.R;
+import com.uyenpham.diploma.antitheft.view.customview.CustomDialogLockPass;
+import com.uyenpham.diploma.antitheft.view.customview.CustomDialogLockPattern;
 import com.uyenpham.diploma.antitheft.view.fragment.AntiTheftFragment;
 
 
@@ -84,8 +86,18 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.content_main, fragment, "AntiTheft");
             fragmentTransaction.commitAllowingStateLoss();
         } else if (id == R.id.nav_gallery) {
+            CustomDialogLockPass dialog = new CustomDialogLockPass();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.setCustomAnimations(android.R.anim.fade_in,
+                    android.R.anim.fade_out);
+            dialog.show(ft, CustomDialogLockPass.TAG);
 
         } else if (id == R.id.nav_slideshow) {
+            CustomDialogLockPattern dialog = new CustomDialogLockPattern();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.setCustomAnimations(android.R.anim.fade_in,
+                    android.R.anim.fade_out);
+            dialog.show(ft, CustomDialogLockPattern.TAG);
 
         } else if (id == R.id.nav_manage) {
 
