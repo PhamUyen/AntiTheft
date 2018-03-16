@@ -1,5 +1,6 @@
 package com.uyenpham.diploma.antitheft.view.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,13 +14,23 @@ import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 import com.uyenpham.diploma.antitheft.R;
 import com.uyenpham.diploma.antitheft.utils.CommonFunction;
+import com.uyenpham.diploma.antitheft.utils.FragmentUtils;
 import com.uyenpham.diploma.antitheft.utils.PreferenceUtils;
+import com.uyenpham.diploma.antitheft.view.activity.MainActivity;
 
 public class AntiTheftFragment extends Fragment implements View.OnClickListener {
     private LinearLayout lnOnCharge, lnOnMove, lnOnNear, lnOnSim;
     private LinearLayout lnOffCharge, lnOffMove, lnOffNear, lnOffSim;
     private ShimmerTextView shimerOffCharge, shimerOffMove, shimerOffNear, shimerOffSim;
     private boolean isOnCharge, isOnMove, isOnNear, isOnSim;
+    private boolean isSetLock;
+    private MainActivity main;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        main = (MainActivity)context;
+    }
 
     @Nullable
     @Override
@@ -29,10 +40,11 @@ public class AntiTheftFragment extends Fragment implements View.OnClickListener 
                 R.layout.fragment_anti_theft, null);
 
         initView(view);
+        initData();
         return view;
     }
-
     private void initView(View view) {
+        main.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         lnOffCharge = view.findViewById(R.id.lnOffCharge);
         lnOnCharge = view.findViewById(R.id.lnOnCharge);
         shimerOffCharge = view.findViewById(R.id.shimerOffCharge);
@@ -45,19 +57,21 @@ public class AntiTheftFragment extends Fragment implements View.OnClickListener 
         lnOffSim = view.findViewById(R.id.lnOffSim);
         lnOnSim = view.findViewById(R.id.lnOnSim);
         shimerOffSim = view.findViewById(R.id.shimerOffSim);
-        lnOffCharge.setOnClickListener(this);
-        lnOnCharge.setOnClickListener(this);
-        lnOffMove.setOnClickListener(this);
-        lnOnMove.setOnClickListener(this);
-        lnOffNear.setOnClickListener(this);
-        lnOnNear.setOnClickListener(this);
-        lnOffSim.setOnClickListener(this);
-        lnOnSim.setOnClickListener(this);
         view.findViewById(R.id.lnCharge).setOnClickListener(this);
+        view.findViewById(R.id.lnMove).setOnClickListener(this);
+        view.findViewById(R.id.lnNear).setOnClickListener(this);
+        view.findViewById(R.id.lnSim).setOnClickListener(this);
+    }
+
+    private void initData(){
+        isSetLock = PreferenceUtils.getBoolean(getActivity(), "lock_type");
     }
 
     @Override
     public void onClick(View view) {
+        if(!isSetLock){
+            FragmentUtils.replaceAndAddToBackStack(main,new ChooseTypeLockFragment(),ChooseTypeLockFragment.class.getSimpleName());
+        }
         switch (view.getId()) {
             case R.id.lnCharge:
                 if (isOnCharge) {
@@ -77,7 +91,7 @@ public class AntiTheftFragment extends Fragment implements View.OnClickListener 
                     }
                 }
                 break;
-            case R.id.lnOnMove:
+            case R.id.lnMove:
                 if (isOnMove) {
                     lnOnMove.setVisibility(View.VISIBLE);
                     lnOffMove.setVisibility(View.GONE);
@@ -89,7 +103,7 @@ public class AntiTheftFragment extends Fragment implements View.OnClickListener 
                     isOnMove = true;
                 }
                 break;
-            case R.id.lnOnNear:
+            case R.id.lnNear:
                 if (isOnNear) {
                     lnOnNear.setVisibility(View.VISIBLE);
                     lnOffNear.setVisibility(View.GONE);
@@ -101,7 +115,7 @@ public class AntiTheftFragment extends Fragment implements View.OnClickListener 
                     isOnNear = true;
                 }
                 break;
-            case R.id.lnOnSim:
+            case R.id.lnSim:
                 if (isOnSim) {
                     lnOnSim.setVisibility(View.VISIBLE);
                     lnOffSim.setVisibility(View.GONE);
@@ -114,5 +128,9 @@ public class AntiTheftFragment extends Fragment implements View.OnClickListener 
                 }
                 break;
         }
+    }
+
+    private void changeStateCharge(){
+
     }
 }

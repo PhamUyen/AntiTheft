@@ -3,7 +3,7 @@ package com.uyenpham.diploma.antitheft.utils;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.uyenpham.diploma.antitheft.model.ServiceActive;
+import com.uyenpham.diploma.antitheft.model.ServiceLock;
 
 public class PreferenceUtils {
     private static final String PREF_NAME = "antitheft";
@@ -42,14 +42,14 @@ public class PreferenceUtils {
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().remove(key).apply();
     }
 
-    public static void saveServiceActive(ServiceActive serviceActive, String key, Context context){
+    public static void saveServiceActive(ServiceLock serviceLock,Context context){
         Gson gson = new Gson();
-        String json = gson.toJson(serviceActive);
-        context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putString(key, json).apply();
+        String json = gson.toJson(serviceLock);
+        context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putString("lock", json).apply();
     }
 
-    public static ServiceActive getServiceActive(String key, Context context){
-        String json =context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getString(key, "");
-        return  new Gson().fromJson(json, ServiceActive.class);
+    public static ServiceLock getServiceActive(Context context){
+        String json =context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getString("lock", "");
+        return  new Gson().fromJson(json, ServiceLock.class);
     }
 }

@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridLayout;
 
 import com.uyenpham.diploma.antitheft.R;
 import com.uyenpham.diploma.antitheft.view.customview.CustomDialogLockPass;
@@ -30,24 +31,30 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                toggleDrawer(drawer);
             }
         });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void toggleDrawer(DrawerLayout drawer){
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        }else {
+            drawer.openDrawer(GravityCompat.START);
+        }
     }
 
     @Override
@@ -72,6 +79,9 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -85,19 +95,10 @@ public class MainActivity extends AppCompatActivity
                     android.R.anim.fade_out);
             fragmentTransaction.replace(R.id.content_main, fragment, "AntiTheft");
             fragmentTransaction.commitAllowingStateLoss();
+            getSupportActionBar().setTitle("Báo trộm");
         } else if (id == R.id.nav_gallery) {
-            CustomDialogLockPass dialog = new CustomDialogLockPass();
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.setCustomAnimations(android.R.anim.fade_in,
-                    android.R.anim.fade_out);
-            dialog.show(ft, CustomDialogLockPass.TAG);
 
         } else if (id == R.id.nav_slideshow) {
-            CustomDialogLockPattern dialog = new CustomDialogLockPattern();
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.setCustomAnimations(android.R.anim.fade_in,
-                    android.R.anim.fade_out);
-            dialog.show(ft, CustomDialogLockPattern.TAG);
 
         } else if (id == R.id.nav_manage) {
 

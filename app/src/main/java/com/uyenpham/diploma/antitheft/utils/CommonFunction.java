@@ -26,8 +26,9 @@ public class CommonFunction {
     public static boolean stringIsNull(String str){
         return str == null || str.equals("");
     }
-    public static void showOverlayActivity(Context context, Class serviceClass){
+    public static void showOverlayActivity(Context context, Class serviceClass, String pass){
         Intent intent = new Intent(context, serviceClass);
+        intent.putExtra("pass", pass);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);

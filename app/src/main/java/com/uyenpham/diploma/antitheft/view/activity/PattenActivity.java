@@ -1,43 +1,57 @@
 package com.uyenpham.diploma.antitheft.view.activity;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.EditText;
 
-import com.uyenpham.diploma.antitheft.IKeybroadClick;
+import com.andrognito.patternlockview.PatternLockView;
+import com.andrognito.patternlockview.listener.PatternLockViewListener;
+import com.andrognito.patternlockview.utils.PatternLockUtils;
 import com.uyenpham.diploma.antitheft.R;
 
-@SuppressLint("Registered")
-public class PattenActivity extends AppCompatActivity implements IKeybroadClick {
-    private EditText edPass;
-    private String passEnter;
+import java.util.List;
+
+public class PattenActivity extends AppCompatActivity implements PatternLockViewListener {
+    private PatternLockView mPatternLockView;
+    private String paternPass;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_password);
+        setContentView(R.layout.pattern_lockview);
 
-        edPass = findViewById(R.id.edPass);
+        mPatternLockView = (PatternLockView) findViewById(R.id.pattern);
+        mPatternLockView.addPatternLockListener(this);
+
+        initData();
     }
 
     @Override
-    public void numberClick(int number) {
-        passEnter = passEnter + number;
-        edPass.setText(passEnter);
+    public void onStarted() {
+
     }
 
     @Override
-    public void removeClick() {
-        if (passEnter != null && passEnter.length() > 0) {
-            passEnter = passEnter.substring(0, passEnter.length() - 1);
-            edPass.setText(passEnter);
+    public void onProgress(List<PatternLockView.Dot> progressPattern) {
+
+    }
+
+    @Override
+    public void onComplete(List<PatternLockView.Dot> pattern) {
+        String patternStr = PatternLockUtils.patternToString(mPatternLockView, pattern);
+        if(patternStr.equals(paternPass)){
+            finish();
         }
     }
 
     @Override
-    public void submitClick() {
-        String pass = edPass.getText().toString();
+    public void onCleared() {
+
+    }
+
+    private void initData(){
+        Intent intent = getIntent();
+        paternPass = intent.getStringExtra("pass");
     }
 }

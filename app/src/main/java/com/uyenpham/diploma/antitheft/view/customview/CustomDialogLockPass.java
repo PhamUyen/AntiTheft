@@ -41,7 +41,7 @@ public class CustomDialogLockPass extends DialogFragment implements IKeybroadCli
 
     @Override
     public void numberClick(int number) {
-        
+
     }
 
     @Override

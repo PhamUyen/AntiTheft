@@ -1,29 +1,18 @@
 package com.uyenpham.diploma.antitheft.model;
 
-public class ServiceActive {
-    private String name;
+public class ServiceLock {
     private String lock;
     private boolean isPassLock;
     private boolean isPatternLock;
 
-    public ServiceActive(String name, String lock, boolean isPassLock, boolean isPatternLock) {
-        this.name = name;
+    public ServiceLock( String lock, boolean isPassLock, boolean isPatternLock) {
         this.lock = lock;
         this.isPassLock = isPassLock;
         this.isPatternLock = isPatternLock;
     }
 
-    public ServiceActive() {
+    public ServiceLock() {
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getLock() {
         return lock;
     }
