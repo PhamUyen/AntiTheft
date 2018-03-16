@@ -17,10 +17,12 @@ public class BroadcastChanger extends BroadcastReceiver {
         if (CommonFunction.compareString("android.intent.action.ACTION_POWER_DISCONNECTED",data)) {
             if(PreferenceUtils.getBoolean(context,"Charge")){
                 ServiceLock serviceLock = PreferenceUtils.getServiceActive(context);
-                if(serviceLock.isPassLock()){
-                    CommonFunction.showOverlayActivity(context, PasswordActivity.class, serviceLock.getLock());
-                }else {
-                    CommonFunction.showOverlayActivity(context, PattenActivity.class, serviceLock.getLock());
+                if(serviceLock != null){
+                    if(serviceLock.isPassLock()){
+                        CommonFunction.showOverlayActivity(context, PasswordActivity.class, serviceLock.getLock());
+                    }else {
+                        CommonFunction.showOverlayActivity(context, PattenActivity.class, serviceLock.getLock());
+                    }
                 }
             }
         }

@@ -71,62 +71,65 @@ public class AntiTheftFragment extends Fragment implements View.OnClickListener 
     public void onClick(View view) {
         if(!isSetLock){
             FragmentUtils.replaceAndAddToBackStack(main,new ChooseTypeLockFragment(),ChooseTypeLockFragment.class.getSimpleName());
-        }
-        switch (view.getId()) {
-            case R.id.lnCharge:
-                if (isOnCharge) {
-                    lnOnCharge.setVisibility(View.VISIBLE);
-                    lnOffCharge.setVisibility(View.GONE);
-                    isOnCharge = false;
-                    PreferenceUtils.saveBoolean(getActivity(),"Charge",isOnCharge);
-                } else {
-                    if (CommonFunction.isPlugged(getActivity())) {
-                        isOnCharge = true;
-                        lnOnCharge.setVisibility(View.GONE);
-                        lnOffCharge.setVisibility(View.VISIBLE);
-                        new Shimmer().start(shimerOffCharge);
+            PreferenceUtils.saveBoolean(getActivity(), "lock_type", true);
+        }else {
+            switch (view.getId()) {
+                case R.id.lnCharge:
+                    if (isOnCharge) {
+                        lnOnCharge.setVisibility(View.VISIBLE);
+                        lnOffCharge.setVisibility(View.GONE);
+                        isOnCharge = false;
                         PreferenceUtils.saveBoolean(getActivity(),"Charge",isOnCharge);
                     } else {
-                        Toast.makeText(getActivity(), "Kết nối bộ sạc!", Toast.LENGTH_SHORT).show();
+                        if (CommonFunction.isPlugged(getActivity())) {
+                            isOnCharge = true;
+                            lnOnCharge.setVisibility(View.GONE);
+                            lnOffCharge.setVisibility(View.VISIBLE);
+                            new Shimmer().start(shimerOffCharge);
+                            PreferenceUtils.saveBoolean(getActivity(),"Charge",isOnCharge);
+                        } else {
+                            Toast.makeText(getActivity(), "Kết nối bộ sạc!", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-                break;
-            case R.id.lnMove:
-                if (isOnMove) {
-                    lnOnMove.setVisibility(View.VISIBLE);
-                    lnOffMove.setVisibility(View.GONE);
-                    isOnMove = false;
-                } else {
-                    lnOnMove.setVisibility(View.GONE);
-                    lnOffMove.setVisibility(View.VISIBLE);
-                    new Shimmer().start(shimerOffMove);
-                    isOnMove = true;
-                }
-                break;
-            case R.id.lnNear:
-                if (isOnNear) {
-                    lnOnNear.setVisibility(View.VISIBLE);
-                    lnOffNear.setVisibility(View.GONE);
-                    isOnNear = false;
-                } else {
-                    lnOnNear.setVisibility(View.GONE);
-                    lnOffNear.setVisibility(View.VISIBLE);
-                    new Shimmer().start(shimerOffNear);
-                    isOnNear = true;
-                }
-                break;
-            case R.id.lnSim:
-                if (isOnSim) {
-                    lnOnSim.setVisibility(View.VISIBLE);
-                    lnOffSim.setVisibility(View.GONE);
-                    isOnSim = false;
-                } else {
-                    lnOnSim.setVisibility(View.GONE);
-                    lnOffSim.setVisibility(View.VISIBLE);
-                    new Shimmer().start(shimerOffSim);
-                    isOnSim = true;
-                }
-                break;
+                    break;
+                case R.id.lnMove:
+                    if (isOnMove) {
+                        lnOnMove.setVisibility(View.VISIBLE);
+                        lnOffMove.setVisibility(View.GONE);
+                        isOnMove = false;
+                    } else {
+                        lnOnMove.setVisibility(View.GONE);
+                        lnOffMove.setVisibility(View.VISIBLE);
+                        new Shimmer().start(shimerOffMove);
+                        isOnMove = true;
+                    }
+                    break;
+                case R.id.lnNear:
+                    if (isOnNear) {
+                        lnOnNear.setVisibility(View.VISIBLE);
+                        lnOffNear.setVisibility(View.GONE);
+                        isOnNear = false;
+                    } else {
+                        lnOnNear.setVisibility(View.GONE);
+                        lnOffNear.setVisibility(View.VISIBLE);
+                        new Shimmer().start(shimerOffNear);
+                        isOnNear = true;
+                    }
+                    break;
+                case R.id.lnSim:
+                    if (isOnSim) {
+                        lnOnSim.setVisibility(View.VISIBLE);
+                        lnOffSim.setVisibility(View.GONE);
+                        isOnSim = false;
+                    } else {
+                        FragmentUtils.replaceAndAddToBackStack(main,new SimInfoFragment(),SimInfoFragment.class.getSimpleName());
+                        lnOnSim.setVisibility(View.GONE);
+                        lnOffSim.setVisibility(View.VISIBLE);
+                        new Shimmer().start(shimerOffSim);
+                        isOnSim = true;
+                    }
+                    break;
+            }
         }
     }
 

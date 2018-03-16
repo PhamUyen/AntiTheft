@@ -17,4 +17,6 @@
     <string name="num9">9</string>
     <string name="numBack">X</string>
     <string name="ok">OK</string>
+    <string name="txt_sms">Email thử nghiệm từ \n %1$s \n Số IMEI : %2$s \n Mã quốc gia : %3$s \n Điều hành : %4$s \n Số của bạn đã được lựa chọn bởi %5$s để được thông
+    báo  khi thẻ sim của điện thoại được thay đổi \n %6$s</string>
 </resources>
