@@ -37,7 +37,9 @@ public class SimUtils {
     }
 
     public static String getCountry(Context context) {
-        return context.getResources().getConfiguration().locale.getCountry();
+        TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        assert manager != null;
+        return manager.getNetworkCountryIso();
     }
 
     @SuppressLint("HardwareIds")

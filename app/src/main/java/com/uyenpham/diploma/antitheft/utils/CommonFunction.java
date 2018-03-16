@@ -42,4 +42,13 @@ public class CommonFunction {
         ComponentName component = new ComponentName(context, serviceName);
         context.getPackageManager().setComponentEnabledSetting(component, PackageManager. COMPONENT_ENABLED_STATE_DISABLED , PackageManager.DONT_KILL_APP);
     }
+
+    public static boolean validateMail(String mail){
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        return mail.matches(emailPattern) && !stringIsNull(mail);
+    }
+    public static boolean validateNumberphone(String phone){
+        String emailPattern = "^[+]?[0-9]{10,13}$";
+        return phone.matches(emailPattern);
+    }
 }
